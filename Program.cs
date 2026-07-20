@@ -20,6 +20,16 @@ app.MapGet("/", () => "Restaurant API is running. See /swagger for details.");
 // This is NOT a reference implementation, just a starting point.
 app.MapGet("/api/orders", () => Results.Ok(repository.GetAll()));
 
+app.MapGet("/api/orders/{id}", (string id) =>
+{
+    Order? order = repository.GetById(id);
+    if (order == null)
+    {
+        return Results.NotFound();
+    }
+    return Results.Ok(order);
+});
+
 app.MapPost("/api/orders", (Order order) => {
     repository.Add(order);
     return Results.Ok(order.Id);
