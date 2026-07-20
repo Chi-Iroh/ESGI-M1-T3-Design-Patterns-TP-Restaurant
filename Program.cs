@@ -20,10 +20,25 @@ app.MapGet("/", () => "Restaurant API is running. See /swagger for details.");
 // This is NOT a reference implementation, just a starting point.
 app.MapGet("/api/orders", () => Results.Ok(repository.GetAll()));
 
+app.MapPut("/api/orders/{id}/state", (string id) =>
+{
+    Order? order = repository.GetById(id);
+    if (order is null)
+    {
+        return Results.NotFound();
+    }
+    string? currentState = order.NextState();
+    if (currentState is null)
+    {
+        return Results.UnprocessableEntity("Order already finished !");
+    }
+    return Results.Ok($"Order {id} has state {currentState}");
+});
+
 app.MapGet("/api/orders/{id}", (string id) =>
 {
     Order? order = repository.GetById(id);
-    if (order == null)
+    if (order is null)
     {
         return Results.NotFound();
     }
