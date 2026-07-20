@@ -37,3 +37,7 @@ var restaurantData = app.Services.GetRequiredService<RestaurantData>();
 
 On laisse le framework nous créer un Singleton thread-safe contenant les données globales.  
 On le réutilise dans la route `/api/menu` pour afficher les données.  
+
+## UML
+
+![doc/UML.png](doc/UML.png)
