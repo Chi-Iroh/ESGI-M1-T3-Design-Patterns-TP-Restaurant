@@ -7,5 +7,11 @@
         public decimal Price { get; set; }
         public string Category { get; set; } = "";
         public int PreparationTimeMinutes { get; set; }
+
+        public MenuItem(string name, decimal price)
+        {
+            this.Name = name;
+            this.Price = price;
+        }
     }
 }

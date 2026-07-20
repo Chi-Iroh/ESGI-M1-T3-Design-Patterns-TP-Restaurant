@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<OrderRepository>();
+builder.Services.AddSingleton<RestaurantData>();
 
 var app = builder.Build();
 
@@ -14,6 +15,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 var repository = app.Services.GetRequiredService<OrderRepository>();
+var restaurantData = app.Services.GetRequiredService<RestaurantData>();
 
 app.MapGet("/", () => "Restaurant API is running. See /swagger for details.");
 
@@ -54,5 +56,7 @@ app.MapPost("/api/orders", (Order order) => {
     repository.Add(order);
     return Results.Ok(order.Id);
 });
+
+app.MapGet("/api/menu", () => Results.Ok(restaurantData.Menus()));
 
 app.Run();

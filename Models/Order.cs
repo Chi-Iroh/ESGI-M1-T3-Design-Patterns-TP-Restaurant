@@ -2,6 +2,26 @@
 
 namespace RestaurantApi.Models
 {
+    public class Menu
+    {
+        public string name { get; set; } = "";
+        public List<string> menu { get; set; } = new();
+        public decimal price { get; set; } = 0;
+
+        public static Menu fromOrder(string name, Order order)
+        {
+            Menu menu = new();
+            menu.name = name;
+            menu.price = order.TotalPrice;
+
+            foreach (MenuItem item in order.Items)
+            {
+                menu.menu.Add(item.Name);
+            }
+            return menu;
+        }
+    }
+
     public class Order
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
