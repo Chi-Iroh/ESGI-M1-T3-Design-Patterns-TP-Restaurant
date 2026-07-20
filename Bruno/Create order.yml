@@ -1,0 +1,33 @@
+info:
+  name: Create order
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:5000/api/orders
+  body:
+    type: json
+    data: |-
+      {
+        "id": "100",
+        "tableNumber": 0,
+        "items": [
+          {
+            "id": "1",
+            "name": "abcdef",
+            "price": 40,
+            "category": "Created",
+            "preparationTimeMinutes": 10
+          }
+        ],
+        "totalPrice": 40,
+        "createdAt": "2026-07-20T08:40:07.051Z"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

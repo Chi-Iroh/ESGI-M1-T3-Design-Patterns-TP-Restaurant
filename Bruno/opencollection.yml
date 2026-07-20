@@ -1,0 +1,10 @@
+opencollection: 1.0.0
+
+info:
+  name: TP Restaurant
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git
