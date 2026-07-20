@@ -1,6 +1,14 @@
 # TP Restaurant
 
-## 3. Workflow de traitement de commandes
+## 2. Calcul flexible du prix total (pattern Strategy)
+
+![doc/Strategy pattern.png](doc/Strategy%20pattern.png)
+
+La classe `Order` calcule son prix grâce à un double pattern Strategy.  
+Elle calcule le prix de base avec des méthodes de tarification (somme des produits ou formule à prix fixe), puis applique les réductions (happy hour, tarif de groupe).  
+Les méthodes de tarification et de réductions sont séparées en deux interfaces distinctes pour clarifier, puisque leur objectif est différent.  
+
+## 3. Workflow de traitement de commandes (pattern State)
 
 ![doc/State pattern.png](doc/State%20pattern.png)
 
