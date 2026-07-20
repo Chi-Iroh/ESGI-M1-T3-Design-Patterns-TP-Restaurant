@@ -21,9 +21,9 @@ namespace RestaurantApi
             return this.state.Finished();
         }
 
-        public string CurrentState()
+        public OrderStatus CurrentState()
         {
-            return this.state.Status().ToString();
+            return this.state.Status();
         }
     }
 }

@@ -1,3 +1,4 @@
+using RestaurantApi;
 using RestaurantApi.Models;
 using RestaurantApi.Repositories;
 
@@ -46,6 +47,10 @@ app.MapGet("/api/orders/{id}", (string id) =>
 });
 
 app.MapPost("/api/orders", (Order order) => {
+    order.Attach(new KitchenListener());
+    order.Attach(new InvoiceListener());
+    order.Attach(new RoomListener());
+
     repository.Add(order);
     return Results.Ok(order.Id);
 });

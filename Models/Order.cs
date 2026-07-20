@@ -52,14 +52,42 @@ namespace RestaurantApi.Models
             return price;
         }
 
+        public OrderStatus status => this.stateManager.CurrentState();
+
         public string? NextState()
         {
+            if (this.stateManager.CurrentState() == OrderStatus.Created)
+            {
+                this.Notify();
+            }
+
             if (this.stateManager.Finished())
             {
                 return null;
             }
             this.stateManager.Next();
-            return this.stateManager.CurrentState();
+            this.Notify();
+            return this.stateManager.CurrentState().ToString();
+        }
+
+        private List<IListener> listeners = new();
+
+        public void Attach(IListener listener)
+        {
+            this.listeners.Add(listener);
+        }
+
+        public void Detach(IListener listener)
+        {
+            this.listeners.Remove(listener);
+        }
+
+        private void Notify()
+        {
+            foreach (IListener listener in this.listeners)
+            {
+                listener.Update(this);
+            }
         }
     }
 }
