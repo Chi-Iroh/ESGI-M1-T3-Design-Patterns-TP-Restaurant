@@ -1,5 +1,10 @@
 # TP Restaurant
 
+## 1. Gestion de différents types de plats
+
+Le champ `category` d'`Order` est libre et permet de créer des catégories à volonté.  
+Des plats peuvent être créés à la volée lorsque l'on crée une commande.  
+
 ## 2. Calcul flexible du prix total (pattern Strategy)
 
 ![doc/Strategy pattern.png](doc/Strategy%20pattern.png)
